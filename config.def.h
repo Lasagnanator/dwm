@@ -42,6 +42,7 @@ static const Layout layouts[] = {
     { "[]=",      tile },    /* first entry is default */
     { "><>",      NULL },    /* no layout function means floating behavior */
     { "[M]",      monocle },
+	{ "[D]",      deck },
 };
 
 /* key definitions */
@@ -73,8 +74,11 @@ static Key keys[] = {
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
     { MODKEY|ShiftMask,             XK_l,      incnmaster,     {.i = +1 } },
     { MODKEY|ShiftMask,             XK_h,      incnmaster,     {.i = -1 } },
-    { MODKEY|ControlMask,           XK_h,      setmfact,       {.f = -0.05} },
     { MODKEY|ControlMask,           XK_l,      setmfact,       {.f = +0.05} },
+    { MODKEY|ControlMask,           XK_h,      setmfact,       {.f = -0.05} },
+    { MODKEY|ControlMask,           XK_k,      setcfact,       {.f = +0.25} },
+    { MODKEY|ControlMask,           XK_j,      setcfact,       {.f = -0.25} },
+    { MODKEY|ControlMask,           XK_o,      setcfact,       {.f =  0.00} },
     { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
     { MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
     { MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
@@ -83,6 +87,7 @@ static Key keys[] = {
     { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
     { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
     { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+    { MODKEY,                       XK_d,      setlayout,      {.v = &layouts[3]} },
     { MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
