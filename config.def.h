@@ -44,7 +44,7 @@ static const Layout layouts[] = {
     { "[M]",      monocle },
     { "[D]",      deck },
     { "|M|",      centeredmaster },
-    { ">M>",      centeredfloatingmaster },
+    { "TTT",      bstack },
 };
 
 /* key definitions */
@@ -91,7 +91,7 @@ static Key keys[] = {
     { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
     { MODKEY,                       XK_d,      setlayout,      {.v = &layouts[3]} },
     { MODKEY,                       XK_e,      setlayout,      {.v = &layouts[4]} },
-//  { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[6]} },
+    { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
     { MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
