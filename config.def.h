@@ -43,7 +43,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -65,11 +65,13 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define LALT   Mod1Mask
 #define TAGKEYS(KEY,TAG) \
     { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+    { MODKEY|LALT,                  KEY,      toggleview,     {.ui = 1 << TAG} }, \
     { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+    { MODKEY|ControlMask|LALT,      KEY,      toggletag,      {.ui = 1 << TAG} }, \
+    { MODKEY|ControlMask,           KEY,      swaptags,       {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -90,15 +92,15 @@ static Key keys[] = {
     { MODKEY,                       XK_b,      togglebar,         {0} },
     { MODKEY,                       XK_j,      focusstack,        {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,        {.i = -1 } },
-    { MODKEY|ShiftMask,             XK_l,      incnmaster,        {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_h,      incnmaster,        {.i = -1 } },
+    { MODKEY|LALT,                  XK_l,      incnmaster,        {.i = +1 } },
+    { MODKEY|LALT,                  XK_h,      incnmaster,        {.i = -1 } },
+    { MODKEY|LALT,                  XK_j,      movestack,         {.i = +1 } },
+    { MODKEY|LALT,                  XK_k,      movestack,         {.i = -1 } },
     { MODKEY|ControlMask,           XK_l,      setmfact,          {.f = +0.05} },
     { MODKEY|ControlMask,           XK_h,      setmfact,          {.f = -0.05} },
     { MODKEY|ControlMask,           XK_k,      setcfact,          {.f = +0.25} },
     { MODKEY|ControlMask,           XK_j,      setcfact,          {.f = -0.25} },
     { MODKEY|ControlMask,           XK_o,      setcfact,          {.f =  0.00} },
-    { MODKEY|ShiftMask,             XK_j,      movestack,         {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_k,      movestack,         {.i = -1 } },
     { MODKEY|ShiftMask,             XK_Return, zoom,              {0} },
     { MODKEY,                       XK_Tab,    view,              {0} },
     { MODKEY|ShiftMask,             XK_q,      killclient,        {0} },
@@ -114,7 +116,7 @@ static Key keys[] = {
     { MODKEY,                       XK_0,      view,              {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,               {.ui = ~0 } },
     { MODKEY,                       XK_i,      scratchpad_show,   {0} },
-    { MODKEY|ShiftMask,             XK_i,      scratchpad_hide,   {0} },
+    { MODKEY|LALT,                  XK_i,      scratchpad_hide,   {0} },
     { MODKEY|ControlMask,           XK_i,      scratchpad_remove, {0} },
     { MODKEY,                       XK_comma,  focusmon,          {.i = -1 } },
     { MODKEY,                       XK_period, focusmon,          {.i = +1 } },
