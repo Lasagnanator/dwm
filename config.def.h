@@ -3,6 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
@@ -31,9 +32,11 @@ static const Rule rules[] = {
      * WM_CLASS(STRING) = instance, class
      * WM_NAME(STRING) = title
      */
-    /* class      instance    title       tags mask     isfloating   monitor */
-    { "Gimp",     NULL,       NULL,       0,            1,           -1 },
-    { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+    /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+    { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+    { "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+    { "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+    { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -103,7 +106,7 @@ static Key keys[] = {
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
     { MODKEY,                       XK_n,      setlayout,      {.v = &layouts[6]} },
     { MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
-	{ MODKEY,                       XK_g,      togglegaps,     {0} },
+    { MODKEY,                       XK_g,      togglegaps,     {0} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
     { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
