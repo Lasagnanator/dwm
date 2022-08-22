@@ -38,6 +38,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1
+#include "deck.c"
+#include "centeredmaster.c"
+#include "bstack.c"
 #include "nrowgrid.c"
 
 static const Layout layouts[] = {
