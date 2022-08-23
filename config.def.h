@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
     /*               fg         bg         border   */
     [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
     [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-+	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
+	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
 };
 
 /* tagging */
@@ -108,7 +108,8 @@ static Key keys[] = {
     { MODKEY|ControlMask,           XK_o,      setcfact,          {.f =  0.00} },
     { MODKEY|ShiftMask,             XK_Return, zoom,              {0} },
     { MODKEY,                       XK_Tab,    view,              {0} },
-    { MODKEY|ShiftMask,             XK_q,      killclient,        {0} },
+    { MODKEY,                       XK_q,      killclient,        {0} },
+	{ MODKEY|ShiftMask,             XK_q,      killunsel,         {0} },
     { MODKEY,                       XK_s,      setlayout,         {.v = &layouts[0]} },
     { MODKEY,                       XK_f,      setlayout,         {.v = &layouts[1]} },
     { MODKEY,                       XK_m,      setlayout,         {.v = &layouts[2]} },
