@@ -3,3 +3,4 @@
 *.rej
 config.h
 dwm
+devel-log.txt
